@@ -1,5 +1,8 @@
 <!doctype html >
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-image="none" data-preloader="disable">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" 
+data-layout="vertical" data-topbar="light" data-sidebar="dark" data-sidebar-size="lg" data-sidebar-view="default" data-sidebar-image="none" data-preloader="disable"
+data-layout-width="fluid" data-layout-position="fixed"
+>
 
 <head>
     <meta charset="utf-8" />
@@ -9,6 +12,7 @@
     <meta content="Themesbrand" name="author" />
     <!-- App favicon -->
     <link rel="shortcut icon" href="{{ URL::asset('assets/images/favicon.ico')}}">
+    <script>var base_url = "{{ URL::to('/') }}/"</script> 
     @include('layouts.head-css')
 </head>
 
