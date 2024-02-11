@@ -1,8 +1,3 @@
-<?php $__env->startSection('title'); ?> <?php echo app('translator')->get('translation.dashboards'); ?> <?php $__env->stopSection(); ?>
-<?php $__env->startSection('css'); ?>
-<link href="<?php echo e(URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')); ?>" rel="stylesheet" type="text/css" />
-<link href="<?php echo e(URL::asset('assets/libs/swiper/swiper.min.css')); ?>" rel="stylesheet" type="text/css" />
-<?php $__env->stopSection(); ?>
 <?php $__env->startSection('content'); ?>
 
 <div class="row">
@@ -54,12 +49,8 @@
                                     <td><?php echo e($row->username); ?></td>
                                     <td align="center">
                                         <div class="hstack gap-1 mt-4 mt-sm-0">
-                                        <button type="button" onClick="link_edit('user', '<?php echo e($row->id); ?>');" class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
-                                            <button type="button" onClick="link_delete('user', '<?php echo e($row->id); ?>');" class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
-<!--
                                             <button type="button" onClick="edit_data('user', '<?php echo e($row->id); ?>');" class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                             <button type="button" onClick="delete_data('user', '<?php echo e($row->id); ?>');" class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
--->
                                         </div>
                                     </td>
                                 </tr>
@@ -102,14 +93,4 @@
 </div>
 
 <?php $__env->stopSection(); ?>
-<?php $__env->startSection('script'); ?>
-<!-- apexcharts -->
-<script src="<?php echo e(URL::asset('/assets/libs/apexcharts/apexcharts.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/assets/libs/jsvectormap/jsvectormap.min.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('assets/libs/swiper/swiper.min.js')); ?>"></script>
-<!-- dashboard init -->
-<script src="<?php echo e(URL::asset('/assets/js/pages/dashboard-ecommerce.init.js')); ?>"></script>
-<script src="<?php echo e(URL::asset('/assets/js/app.min.js')); ?>"></script>
-<?php $__env->stopSection(); ?>
-
 <?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/amx/resources/views/user/index.blade.php ENDPATH**/ ?>

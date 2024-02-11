@@ -1,9 +1,4 @@
 @extends('layouts.master')
-@section('title') @lang('translation.dashboards') @endsection
-@section('css')
-<link href="{{ URL::asset('assets/libs/jsvectormap/jsvectormap.min.css')}}" rel="stylesheet" type="text/css" />
-<link href="{{ URL::asset('assets/libs/swiper/swiper.min.css')}}" rel="stylesheet" type="text/css" />
-@endsection
 @section('content')
 
 <div class="row">
@@ -55,12 +50,8 @@
                                     <td>{{ $row->username }}</td>
                                     <td align="center">
                                         <div class="hstack gap-1 mt-4 mt-sm-0">
-                                        <button type="button" onClick="link_edit('user', '{{ $row->id }}');" class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
-                                            <button type="button" onClick="link_delete('user', '{{ $row->id }}');" class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
-<!--
                                             <button type="button" onClick="edit_data('user', '{{ $row->id }}');" class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                             <button type="button" onClick="delete_data('user', '{{ $row->id }}');" class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
--->
                                         </div>
                                     </td>
                                 </tr>
@@ -101,13 +92,4 @@
     </div>
 </div>
 
-@endsection
-@section('script')
-<!-- apexcharts -->
-<script src="{{ URL::asset('/assets/libs/apexcharts/apexcharts.min.js') }}"></script>
-<script src="{{ URL::asset('/assets/libs/jsvectormap/jsvectormap.min.js') }}"></script>
-<script src="{{ URL::asset('assets/libs/swiper/swiper.min.js')}}"></script>
-<!-- dashboard init -->
-<script src="{{ URL::asset('/assets/js/pages/dashboard-ecommerce.init.js') }}"></script>
-<script src="{{ URL::asset('/assets/js/app.min.js') }}"></script>
 @endsection

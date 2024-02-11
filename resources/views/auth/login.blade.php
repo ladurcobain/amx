@@ -34,7 +34,6 @@
             <div class="row justify-content-center">
                 <div class="col-md-8 col-lg-6 col-xl-5">
                     <div class="card mt-4">
-
                         <div class="card-body p-4">
                             <div class="text-center mt-2">
                                 <h5 class="text-primary">Welcome Back !</h5>
@@ -52,7 +51,6 @@
                                             </span>
                                         @enderror
                                     </div>
-
                                     <div class="mb-3">
                                         <div class="float-end">
                                             <a href="auth-pass-reset-basic" class="text-muted">Forgot password?</a>
@@ -77,9 +75,6 @@
                         <!-- end card body -->
                     </div>
                     <!-- end card -->
-                    <div class="mt-4 text-center">
-                        <p class="mb-0">Don't have an account ? <a href="register" class="fw-semibold text-primary text-decoration-underline"> Signup </a> </p>
-                    </div>
                 </div>
             </div>
             <!-- end row -->
@@ -94,7 +89,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-center">
-                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand</p>
+                        <p class="mb-0 text-muted">&copy; <script>document.write(new Date().getFullYear())</script> Velzon. Crafted with <i class="mdi mdi-heart text-danger"></i> by AMX Cargo</p>
                     </div>
                 </div>
             </div>
