@@ -8,6 +8,8 @@ use App\Http\Controllers\AjaxController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProvinsiController;
+use App\Http\Controllers\KotaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,6 +47,29 @@ Route::group(['middleware' => ['checkLogin']], function () {
     Route::post('user/password', [UserController::class, 'password'])->name('user.password');
     Route::get('user/destroy/{id}', [UserController::class, 'destroy'])->name('user.destroy');
     Route::post('user/search', [UserController::class, 'search'])->name('user.search');
+
+    // PROVINSI
+    Route::get('provinsi/search', [ProvinsiController::class, 'search']);
+    Route::post('provinsi/filter', [ProvinsiController::class, 'filter'])->name('provinsi.filter');
+    Route::get('provinsi', [ProvinsiController::class, 'index'])->name('provinsi.index');
+    Route::get('provinsi/create', [ProvinsiController::class, 'create'])->name('provinsi.create');
+    Route::post('provinsi/store', [ProvinsiController::class, 'store'])->name('provinsi.store');
+    Route::get('provinsi/edit/{id}', [ProvinsiController::class, 'edit'])->name('provinsi.edit');
+    Route::post('provinsi/update', [ProvinsiController::class, 'update'])->name('provinsi.update');
+    Route::get('provinsi/destroy/{id}', [ProvinsiController::class, 'destroy'])->name('provinsi.destroy');
+    Route::post('provinsi/search', [ProvinsiController::class, 'search'])->name('provinsi.search');
+
+    // KOTA
+    Route::get('kota/search', [KotaController::class, 'search']);
+    Route::post('kota/filter', [KotaController::class, 'filter'])->name('kota.filter');
+    Route::get('kota', [KotaController::class, 'index'])->name('kota.index');
+    Route::get('kota/create', [KotaController::class, 'create'])->name('kota.create');
+    Route::post('kota/store', [KotaController::class, 'store'])->name('kota.store');
+    Route::get('kota/edit/{id}', [KotaController::class, 'edit'])->name('kota.edit');
+    Route::post('kota/update', [KotaController::class, 'update'])->name('kota.update');
+    Route::get('kota/destroy/{id}', [KotaController::class, 'destroy'])->name('kota.destroy');
+    Route::post('kota/search', [KotaController::class, 'search'])->name('kota.search');
+
 });
 
 //Language Translation

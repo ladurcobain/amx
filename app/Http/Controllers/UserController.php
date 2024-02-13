@@ -56,7 +56,7 @@ class UserController extends Controller
         $res = Curl::postRequest($url, $param);
 
         if($res->status == 200) {
-            $newCollection = collect($res->data);
+            $newCollection = collect($res->data->usersData);
             $results =  new LengthAwarePaginator(
                 $newCollection,
                 count($newCollection),
