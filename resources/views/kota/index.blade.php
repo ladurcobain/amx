@@ -9,7 +9,7 @@
                         Daftar <?php echo $title; ?>
                     </h5>
                     <div>
-                        <button type="button" OnClick="link_add('user');"
+                        <button type="button" OnClick="link_add('kota');"
                             class="btn btn-sm btn-secondary btn-label waves-effect waves-light"><i
                                 class="ri-add-circle-line label-icon align-middle fs-16 me-2"></i> Tambah</button>
                     </div>
@@ -25,7 +25,7 @@
                     @endif
                     <div class="live-preview">
                         <div>
-                            <form method="post" action="{{ route('user.filter') }}">
+                            <form method="post" action="{{ route('kota.filter') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="row mb-3">
                                     <div class="col-lg-6"></div>
@@ -46,7 +46,9 @@
                                 style="width:100%">
                                 <thead class="text-muted table-light">
                                     <tr>
-                                        <th>Username</th>
+                                        <th>Nama Kota</th>
+                                        <th>Provinsi</th>
+                                        <th>Status</th>
                                         <th width="5%">Action</th>
                                     </tr>
                                 </thead>
@@ -54,14 +56,16 @@
                                     @if (!empty($results))
                                         @foreach ($results as $row)
                                             <tr>
-                                                <td>{{ $row->username }}</td>
+                                                <td>{{ $row->name }}</td>
+                                                <td>{{ $row->Province->name }}</td>
+                                                <td>{{ $row->status }}</td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"
-                                                            onClick="edit_data('user', '{{ $row->id }}');"
+                                                            onClick="edit_data('kota', '{{ $row->id }}');"
                                                             class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                                         <button type="button"
-                                                            onClick="delete_data('user', '{{ $row->id }}');"
+                                                            onClick="delete_data('kota', '{{ $row->id }}');"
                                                             class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
                                                     </div>
                                                 </td>
@@ -79,7 +83,7 @@
                                 </tbody>
                                 <tfoot class="text-semibold table-light">
                                     <tr>
-                                        <td colspan="2">
+                                        <td colspan="4">
                                             <div
                                                 class="align-items-center pt-2 justify-content-between row text-center text-sm-start">
                                                 <div class="col-sm">
