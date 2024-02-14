@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -14,24 +13,34 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if ($alert = Session::get('alrt'))
+                    <?php if($alert = Session::get('alrt')): ?>
                         <div class="alert <?php echo $alert == 'error' ? 'alert-danger' : 'alert-success'; ?> alert-dismissible fade show" management="alert">
                             <strong><?php echo $alert == 'error' ? 'Error' : 'Success'; ?>!</strong>
                             <?php echo Session::get('msgs'); ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true"
                                 aria-label="Close"></button>
                         </div>
-                    @endif
+                    <?php endif; ?>
                     <div class="live-preview">
-                        <div>
-                            <form method="post" action="{{ route('provinsi.store') }}"class="needs-validation" novalidate
+                        <?php if(!empty($info)): ?>
+                            <form method="post" action="<?php echo e(route('provinsi.update')); ?>"class="needs-validation" novalidate
                                 enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                                <input type="hidden" name="id" value="<?php echo e($info->id); ?>" />
+                                <div class="row mb-3">
+                                    <div class="col-lg-3"></div>
+                                    <div class="col-lg-9">
+                                        <input class="form-check-input" type="checkbox" name="status" value="true" <?php echo e(($info->status == true)?"checked":""); ?> />
+                                        <label class="form-check-label">
+                                            <?php echo e($info->status); ?>    
+                                        </label>
+                                    </div>
+                                </div>
                                 <div class="row mb-3">
                                     <label class="col-lg-3">Nama Provinsi <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
-                                        <input type="text" name="name" placeholder="Nama Kota" value=""
-                                            class="form-control" autocomplete="off" required="required" />
+                                        <input type="text" name="name" placeholder="Nama Provinsi"
+                                            value="<?php echo e($info->name); ?>" class="form-control" />
                                     </div>
                                 </div>
                                 <div class="text-end">
@@ -39,10 +48,13 @@
                                     <button type="reset" class="btn btn-danger">Batal</button>
                                 </div>
                             </form>
-                        </div>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>
     </div>
-@endsection
+    </div>
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/amx/resources/views/provinsi/edit.blade.php ENDPATH**/ ?>

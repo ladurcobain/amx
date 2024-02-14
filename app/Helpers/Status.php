@@ -26,10 +26,10 @@ class Status
     public static function tipeStatus($type)
     {
         switch($type) {
-            case 1 : 
+            case true : 
                 $string = "Aktif";
             break;
-            case 2 : 
+            case false : 
                 $string = "Tdk Aktif";
             break;
 

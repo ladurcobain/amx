@@ -1,5 +1,4 @@
-@extends('layouts.master')
-@section('content')
+<?php $__env->startSection('content'); ?>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
@@ -14,24 +13,34 @@
                     </div>
                 </div>
                 <div class="card-body">
-                    @if ($alert = Session::get('alrt'))
+                    <?php if($alert = Session::get('alrt')): ?>
                         <div class="alert <?php echo $alert == 'error' ? 'alert-danger' : 'alert-success'; ?> alert-dismissible fade show" management="alert">
                             <strong><?php echo $alert == 'error' ? 'Error' : 'Success'; ?>!</strong>
                             <?php echo Session::get('msgs'); ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true"
                                 aria-label="Close"></button>
                         </div>
-                    @endif
+                    <?php endif; ?>
                     <div class="live-preview">
                         <div>
-                            <form method="post" action="{{ route('provinsi.store') }}"class="needs-validation" novalidate
+                            <form method="post" action="<?php echo e(route('provinsi.store')); ?>"class="needs-validation" novalidate
                                 enctype="multipart/form-data">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
+                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
                                 <div class="row mb-3">
                                     <label class="col-lg-3">Nama Provinsi <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input type="text" name="name" placeholder="Nama Kota" value=""
                                             class="form-control" autocomplete="off" required="required" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-lg-3">Status <span class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <select class="form-select" aria-label="Default select example" name="status">
+                                            <option selected disabled>== Pilih Status ==</option>
+                                            <option value="true">true</option>
+                                            <option value="false">false</option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="text-end">
@@ -45,4 +54,6 @@
             </div>
         </div>
     </div>
-@endsection
+<?php $__env->stopSection(); ?>
+
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Applications/MAMP/htdocs/amx/resources/views/provinsi/create.blade.php ENDPATH**/ ?>

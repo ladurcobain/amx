@@ -2,10 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Routing\Controller;
+
+
+
 use Illuminate\Http\Request;
-use App\Helpers\Curl;
+use App\Helpers\Curl, Status;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Session;
+use Helper;
 
 class ProvinsiController extends Controller
 {
@@ -89,12 +94,12 @@ class ProvinsiController extends Controller
         $uri = Curl::endpoint();
         $url = $uri .'/'.'province/create';
 
-        $name  = $request->name;
-        $status  = $request->status;
+        $name   = $request->name;
+        $status = $request->status;
 
         $param = array(
             'name'   => $name,
-            'status'   => $status
+            'status' => true,
         );
 
         $res = Curl::requestPost($url, $param);
@@ -140,7 +145,7 @@ class ProvinsiController extends Controller
 
         $param = array(
             'name'   => $name,
-            'status'   => $status,
+            'status' => $status,
         );
 
         $res = Curl::requestPut($url.'/'.$id, $param);
