@@ -45,16 +45,6 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="row mb-3">
-                                    <label class="col-lg-3">Status <span class="text-danger">*</span></label>
-                                    <div class="col-lg-9">
-                                        <select class="form-select" aria-label="Default select example" name="status">
-                                            <option selected disabled>== Pilih Status ==</option>
-                                            <option value="true">true</option>
-                                            <option value="false">false</option>
-                                        </select>
-                                    </div>
-                                </div>
                                 <div class="text-end">
                                     <button type="submit" class="btn btn-success">Simpan</button>
                                     <button type="reset" class="btn btn-danger">Batal</button>
