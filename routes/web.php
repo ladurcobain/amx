@@ -10,6 +10,7 @@ use App\Http\Controllers\ErrorController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaController;
+use App\Http\Controllers\BranchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -69,6 +70,17 @@ Route::group(['middleware' => ['checkLogin']], function () {
     Route::post('kota/update', [KotaController::class, 'update'])->name('kota.update');
     Route::get('kota/destroy/{id}', [KotaController::class, 'destroy'])->name('kota.destroy');
     Route::post('kota/search', [KotaController::class, 'search'])->name('kota.search');
+
+    // BRANCH
+    Route::get('branch', [BranchController::class, 'index'])->name('branch.index');
+    Route::post('branch/filter', [BranchController::class, 'filter'])->name('branch.filter');
+    Route::get('branch/search', [BranchController::class, 'search']);
+    Route::post('branch/search', [BranchController::class, 'search'])->name('branch.search');
+    Route::get('branch/create', [BranchController::class, 'create'])->name('branch.create');
+    Route::post('branch/store', [BranchController::class, 'store'])->name('branch.store');
+    Route::get('branch/edit/{id}', [BranchController::class, 'edit'])->name('branch.edit');
+    Route::post('branch/update', [BranchController::class, 'update'])->name('branch.update');
+    Route::get('branch/destroy/{id}', [BranchController::class, 'destroy'])->name('branch.destroy');
 
 });
 

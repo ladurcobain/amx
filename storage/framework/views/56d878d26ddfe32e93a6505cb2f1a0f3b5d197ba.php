@@ -5,19 +5,19 @@
         <!-- Dark Logo-->
         <a href="index" class="logo logo-dark">
             <span class="logo-sm">
-                <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                <img src="<?php echo e(URL::asset('assets/images/logo-sm.png')); ?>" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ URL::asset('assets/images/logo-dark.png') }}" alt="" height="17">
+                <img src="<?php echo e(URL::asset('assets/images/logo-dark.png')); ?>" alt="" height="17">
             </span>
         </a>
         <!-- Light Logo-->
         <a href="index" class="logo logo-light">
             <span class="logo-sm">
-                <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="22">
+                <img src="<?php echo e(URL::asset('assets/images/logo-sm.png')); ?>" alt="" height="22">
             </span>
             <span class="logo-lg">
-                <img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="17">
+                <img src="<?php echo e(URL::asset('assets/images/logo-light.png')); ?>" alt="" height="17">
             </span>
         </a>
         <button type="button" class="btn btn-sm p-0 fs-20 header-item float-end btn-vertical-sm-hover"
@@ -32,62 +32,62 @@
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span>@lang('translation.menu')</span></li>
+                <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
                 <li class="nav-item">
                     <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
                         aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-dashboard-2-line"></i> <span>@lang('translation.dashboards')</span>
+                        <i class="ri-dashboard-2-line"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
                     </a>
                     <div class="collapse menu-dropdown" id="sidebarDashboards">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a href="dashboard-analytics" class="nav-link">@lang('translation.analytics')</a>
+                                <a href="dashboard-analytics" class="nav-link"><?php echo app('translator')->get('translation.analytics'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="dashboard-crm" class="nav-link">@lang('translation.crm')</a>
+                                <a href="dashboard-crm" class="nav-link"><?php echo app('translator')->get('translation.crm'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="index" class="nav-link">@lang('translation.ecommerce')</a>
+                                <a href="index" class="nav-link"><?php echo app('translator')->get('translation.ecommerce'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="dashboard-crypto" class="nav-link">@lang('translation.crypto')</a>
+                                <a href="dashboard-crypto" class="nav-link"><?php echo app('translator')->get('translation.crypto'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="dashboard-projects" class="nav-link">@lang('translation.projects')</a>
+                                <a href="dashboard-projects" class="nav-link"><?php echo app('translator')->get('translation.projects'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="dashboard-nft" class="nav-link"> @lang('translation.nft')</a>
+                                <a href="dashboard-nft" class="nav-link"> <?php echo app('translator')->get('translation.nft'); ?></a>
                             </li>
                             <li class="nav-item">
-                                <a href="dashboard-job" class="nav-link"><span>@lang('translation.job')</span> <span
-                                        class="badge badge-pill bg-success">@lang('translation.new')</span></a>
+                                <a href="dashboard-job" class="nav-link"><span><?php echo app('translator')->get('translation.job'); ?></span> <span
+                                        class="badge badge-pill bg-success"><?php echo app('translator')->get('translation.new'); ?></span></a>
                             </li>
                         </ul>
                     </div>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ Request::is('user*') ? 'active' : '' }}"
-                        href="{{ route('user.index') }}">
+                    <a class="nav-link menu-link <?php echo e(Request::is('user*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('user.index')); ?>">
                         <i class="ri-user-2-line"></i><span>Pengguna</span>
                         
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ Request::is('provinsi*') ? 'active' : '' }}"
-                        href="{{ route('provinsi.index') }}">
+                    <a class="nav-link menu-link <?php echo e(Request::is('provinsi*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('provinsi.index')); ?>">
                         <i class="ri-user-2-line"></i> <span>Provinsi</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ Request::is('kota*') ? 'active' : '' }}"
-                        href="{{ route('kota.index') }}">
+                    <a class="nav-link menu-link <?php echo e(Request::is('kota*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('kota.index')); ?>">
                         <i class="ri-user-2-line"></i> <span>Kota</span>
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link menu-link {{ Request::is('branch*') ? 'active' : '' }}"
-                        href="{{ route('branch.index') }}">
+                    <a class="nav-link menu-link <?php echo e(Request::is('branch*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('branch.index')); ?>">
                         <i class="ri-user-2-line"></i> <span>Cabang</span>
                     </a>
                 </li>
@@ -100,3 +100,4 @@
 <!-- Left Sidebar End -->
 <!-- Vertical Overlay-->
 <div class="vertical-overlay"></div>
+<?php /**PATH C:\xampp\htdocs\amx\resources\views/layouts/sidebar.blade.php ENDPATH**/ ?>
