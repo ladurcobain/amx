@@ -58,7 +58,7 @@
                                             <tr>
                                                 <td>{{ $row->name }}</td>
                                                 <td>{{ $row->Province->name }}</td>
-                                                <td>{{ $row->status }}</td>
+                                                <td>{{ App\Helpers\Status::tipeStatus($row->status) }}</td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"

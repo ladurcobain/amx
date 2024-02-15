@@ -51,9 +51,8 @@
                                     <label class="col-lg-3">Status <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <select class="form-select" aria-label="Default select example" name="status">
-                                            <option value={{ $info->status }}>{{ $info->status }}</option>
-                                            <option value="true">true</option>
-                                            <option value="false">false</option>
+                                            <option value="true" {{ $info->status == true ? "selected" : "" }}>Aktif</option>
+                                            <option value="false" {{ $info->status == false ? "selected" : "" }}>Tdk Aktif</option>
                                         </select>
                                     </div>
                                 </div>

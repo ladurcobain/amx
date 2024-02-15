@@ -29,19 +29,21 @@
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <input type="hidden" name="id" value="{{ $info->id }}" />
                                 <div class="row mb-3">
-                                    <div class="col-lg-3"></div>
-                                    <div class="col-lg-9">
-                                        <input class="form-check-input" type="checkbox" name="status" value="true" {{ ($info->status == true)?"checked":"" }} />
-                                        <label class="form-check-label">
-                                            {{ Status::tipeStatus($info->status) }}    
-                                        </label>
-                                    </div>
-                                </div>
-                                <div class="row mb-3">
                                     <label class="col-lg-3">Nama Provinsi <span class="text-danger">*</span></label>
                                     <div class="col-lg-9">
                                         <input type="text" name="name" placeholder="Nama Provinsi"
                                             value="{{ $info->name }}" class="form-control" />
+                                    </div>
+                                </div>
+                                <div class="row mb-3">
+                                    <label class="col-lg-3">Status <span class="text-danger">*</span></label>
+                                    <div class="col-lg-9">
+                                        <select class="form-select" aria-label="Default select example" name="status">
+                                            <option value="true" {{ $info->status == true ? 'selected' : '' }}>Aktif
+                                            </option>
+                                            <option value="false" {{ $info->status == false ? 'selected' : '' }}>Tdk Aktif
+                                            </option>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="text-end">

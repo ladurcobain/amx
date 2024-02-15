@@ -99,12 +99,11 @@ class KotaController extends Controller
 
         $name  = $request->name;
         $provinceId  = $request->provinceId;
-        $status  = $request->status;
 
         $param = array(
             'name'   => $name,
             'provinceId'   => $provinceId,
-            'status'   => $status
+            'status'   => true
         );
 
         $res = Curl::requestPost($url, $param);

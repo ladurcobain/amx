@@ -57,7 +57,7 @@
                                             <tr>
                                                 <td>{{ $row->name }}</td>
                                                 <td align="center">
-													<span class="badge text-<?php echo ($row->status != true) ? "bg-secondary":"bg-primary"; ?>">{{ Status::tipeStatus($row->status) }} </span>
+													<span class="badge text-<?php echo ($row->status != true) ? "bg-secondary":"bg-primary"; ?>">{{ App\Helpers\Status::tipeStatus($row->status) }} </span>
 												</td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
