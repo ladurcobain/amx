@@ -91,6 +91,12 @@
                         <i class="ri-user-2-line"></i> <span>Cabang</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link {{ Request::is('forwarder*') ? 'active' : '' }}"
+                        href="{{ route('forwarder.index') }}">
+                        <i class="ri-user-2-line"></i> <span>Forwarder</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

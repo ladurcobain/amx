@@ -91,6 +91,12 @@
                         <i class="ri-user-2-line"></i> <span>Cabang</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
+                        href="<?php echo e(route('forwarder.index')); ?>">
+                        <i class="ri-user-2-line"></i> <span>Forwarder</span>
+                    </a>
+                </li>
             </ul>
         </div>
         <!-- Sidebar -->

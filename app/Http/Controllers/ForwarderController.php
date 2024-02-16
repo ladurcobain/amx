@@ -8,16 +8,16 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Pagination\LengthAwarePaginator;
 
-class BranchController extends Controller
+class ForwarderController extends Controller
 {
-    private $title = "Cabang";
-    private $subtitle = "Pengelolaan Cabang";
-    private $path = 'cabang/search';
+    private $title = "Forwarder";
+    private $subtitle = "Pengelolaan Forwarder";
+    private $path = 'forwarder/search';
 
     public function index() 
     {
         Session::forget('q');   
-        return redirect()->route('branch.search');
+        return redirect()->route('forwarder.search');
     }
 
     public function search()
@@ -33,7 +33,7 @@ class BranchController extends Controller
         $offset = ($page * $perPage) - $perPage;
 
         $uri = Curl::endpoint();
-        $url = $uri .'/'.'branch';
+        $url = $uri .'/'.'forwarder';
         $param = array(
             'limit'   => $perPage,
             'offset'  => $offset,
@@ -43,7 +43,7 @@ class BranchController extends Controller
         $res = Curl::postRequest($url, $param);
 
         if ($res->status == 200) {
-            $newCollection = collect($res->data->branchsData);
+            $newCollection = collect($res->data->forwardersData);
             $results =  new LengthAwarePaginator(
                 $newCollection,
                 count($newCollection),
@@ -62,7 +62,7 @@ class BranchController extends Controller
             );
         }
 
-        return view('branch.index', $data, compact('results'));
+        return view('forwarder.index', $data, compact('results'));
     }
 
     public function filter(Request $request)
@@ -71,9 +71,9 @@ class BranchController extends Controller
             $q = $request->q;
             Session::put('q', $q); 
             
-            return redirect()->route('branch.search');
+            return redirect()->route('forwarder.search');
         } else {
-            return redirect()->route('branch.index');
+            return redirect()->route('forwarder.index');
         }
     }
 
@@ -90,37 +90,25 @@ class BranchController extends Controller
             "status" => null
         );
 
-        $urlKota = $uri .'/'.'city';
-        $paramKota = array(
-            "name"       => null,
-            "provinceId" => null,
-            "status"     => null
-        );
-
         $data['resProvinsi'] = Curl::requestPost($urlProvinsi, $param)->data->provincesData;
-        $data['resKota'] = Curl::requestPost($urlKota, $paramKota)->data->citiesData;
 
-        return view('branch.create', $data);
+        return view('forwarder.create', $data);
     }
 
     public function store(Request $request)
     {
         $uri = Curl::endpoint();
-        $url = $uri .'/'.'branch/create';
+        $url = $uri .'/'.'forwarder/create';
 
         $name  = $request->name;
-        $address  = $request->address;
-        $phoneNumber  = $request->phoneNumber;
-        $provinceId  = $request->provinceId;
-        $cityId  = $request->cityId;
+        $originProvince  = $request->originProvince;
+        $destinationProvince  = $request->destinationProvince;
 
         $param = array(
-            'name'        => $name,
-            'address'     => $address,
-            'phoneNumber' => $phoneNumber,
-            'provinceId'  => $provinceId,
-            'cityId'      => $cityId,
-            'status'      => true
+            'name'                => $name,
+            'originProvince'      => $originProvince,
+            'destinationProvince' => $destinationProvince,
+            'status'              => true
         );
 
         $res = Curl::requestPost($url, $param);
@@ -128,12 +116,12 @@ class BranchController extends Controller
         Session::flash('alrt', (($res->status == 201) ? 'success' : 'error'));    
         Session::flash('msgs', $res->message);  
 
-        return redirect()->route('branch.index');
+        return redirect()->route('forwarder.index');
     }
 
     public function show($id)
     {
-        return redirect()->route('branch.index');
+        return redirect()->route('forwarder.index');
     }
 
     public function edit($id)
@@ -149,17 +137,9 @@ class BranchController extends Controller
             "status" => null
         );
 
-        $urlKota = $uri .'/'.'city';
-        $paramKota = array(
-            "name"       => null,
-            "provinceId" => null,
-            "status"     => null
-        );
-
         $data['resProvinsi'] = Curl::requestPost($urlProvinsi, $param)->data->provincesData;
-        $data['resKota'] = Curl::requestPost($urlKota, $paramKota)->data->citiesData;
 
-        $url = $uri .'/'.'branch';
+        $url = $uri .'/'.'forwarder';
         $res = Curl::requestGet($url.'/'.$id);
        
         if ($res->status == 200) {
@@ -168,47 +148,43 @@ class BranchController extends Controller
             return redirect()->route('error.index');  
         }
 
-        return view('branch.edit', $data);
+        return view('forwarder.edit', $data);
     }
 
     public function update(Request $request)
     {
         $uri = Curl::endpoint();
-        $url = $uri .'/'.'branch';
+        $url = $uri .'/'.'forwarder';
 
         $id = $request->id;
-        $name = $request->name;
-        $address = $request->address;
-        $phoneNumber = $request->phoneNumber;
-        $provinceId = $request->provinceId;
-        $cityId = $request->cityId;
+        $name  = $request->name;
+        $originProvince  = $request->originProvince;
+        $destinationProvince  = $request->destinationProvince;
         $status = $request->status;
 
         $param = array(
-            'name'        => $name,
-            'address'     => $address,
-            'phoneNumber' => $phoneNumber,
-            'provinceId'  => $provinceId,
-            'cityId'      => $cityId,
-            'status'      => $status,
+            'name'                => $name,
+            'originProvince'      => $originProvince,
+            'destinationProvince' => $destinationProvince,
+            'status'              => $status
         );
 
         $res = Curl::requestPut($url.'/'.$id, $param);
         Session::flash('alrt', (($res->status == 201) ? 'success' : 'error'));    
         Session::flash('msgs', $res->message);  
 
-        return redirect()->route('branch.search');
+        return redirect()->route('forwarder.search');
     }
 
     public function destroy($id)
     {
         $uri = Curl::endpoint();
-        $url = $uri .'/'.'branch';
+        $url = $uri .'/'.'forwarder';
         $res = Curl::requestDelete($url.'/'.$id);
 
         Session::flash('alrt', (($res->status == 200) ? 'success' : 'error'));    
         Session::flash('msgs', $res->message);  
 
-        return redirect()->route('branch.search');
+        return redirect()->route('forwarder.search');
     }
 }

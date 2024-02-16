@@ -64,7 +64,9 @@
                                                 <td><?php echo e($row->phoneNumber); ?></td>
                                                 <td><?php echo e($row->Province->name); ?></td>
                                                 <td><?php echo e($row->City->name); ?></td>
-                                                <td><?php echo e(App\Helpers\Status::tipeStatus($row->status)); ?></td>
+                                                <td align="center">
+													<span class="badge text-<?php echo ($row->status != true) ? "bg-danger" : "bg-secondary"; ?>"><?php echo e(App\Helpers\Status::tipeStatus($row->status)); ?></span>
+												</td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"

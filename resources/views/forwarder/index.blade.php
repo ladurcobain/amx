@@ -9,7 +9,7 @@
                         Daftar <?php echo $title; ?>
                     </h5>
                     <div>
-                        <button type="button" OnClick="link_add('branch');"
+                        <button type="button" OnClick="link_add('forwarder');"
                             class="btn btn-sm btn-secondary btn-label waves-effect waves-light"><i
                                 class="ri-add-circle-line label-icon align-middle fs-16 me-2"></i> Tambah</button>
                     </div>
@@ -25,14 +25,14 @@
                     @endif
                     <div class="live-preview">
                         <div>
-                            <form method="post" action="{{ route('branch.filter') }}">
+                            <form method="post" action="{{ route('forwarder.filter') }}">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="row mb-3">
                                     <div class="col-lg-6"></div>
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control"
-                                                placeholder="Cari Berdasarkan Nama {{ ucfirst($title) }} ..."
+                                                placeholder="Cari Berdasarkan {{ ucfirst($title) }} ..."
                                                 value="{{ $q }}" name="keyword" autocomplete="off" />
                                             <button class="btn btn-outline-secondary" type="submit"
                                                 id="button-addon2">Cari</button>
@@ -46,11 +46,9 @@
                                 style="width:100%">
                                 <thead class="text-muted table-light">
                                     <tr>
-                                        <th>Nama Cabang</th>
-                                        <th>Alamat</th>
-                                        <th>No.Telpon</th>
-                                        <th>Provinsi</th>
-                                        <th>Kota</th>
+                                        <th>Forwarder</th>
+                                        <th>Provinsi Asal</th>
+                                        <th>Provinsi Tujuan</th>
                                         <th>Status</th>
                                         <th width="5%">Action</th>
                                     </tr>
@@ -60,20 +58,18 @@
                                         @foreach ($results as $row)
                                             <tr>
                                                 <td>{{ $row->name }}</td>
-                                                <td>{{ $row->address }}</td>
-                                                <td>{{ $row->phoneNumber }}</td>
-                                                <td>{{ $row->Province->name }}</td>
-                                                <td>{{ $row->City->name }}</td>
+                                                <td>{{ $row->Origin->name }}</td>
+                                                <td>{{ $row->Destination->name }}</td>
                                                 <td align="center">
 													<span class="badge text-<?php echo ($row->status != true) ? "bg-danger" : "bg-secondary"; ?>">{{ App\Helpers\Status::tipeStatus($row->status) }}</span>
 												</td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"
-                                                            onClick="edit_data('branch', '{{ $row->id }}');"
+                                                            onClick="edit_data('forwarder', '{{ $row->id }}');"
                                                             class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                                         <button type="button"
-                                                            onClick="delete_data('branch', '{{ $row->id }}');"
+                                                            onClick="delete_data('forwarder', '{{ $row->id }}');"
                                                             class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
                                                     </div>
                                                 </td>
@@ -81,7 +77,7 @@
                                         @endforeach
                                     @else
                                         <tr>
-                                            <td colspan="7">
+                                            <td colspan="5">
                                                 <p class="card-text text-center">
                                                     <small class="text-muted">No data found</small>
                                                 </p>
@@ -91,7 +87,7 @@
                                 </tbody>
                                 <tfoot class="text-semibold table-light">
                                     <tr>
-                                        <td colspan="7">
+                                        <td colspan="5">
                                             <div
                                                 class="align-items-center pt-2 justify-content-between row text-center text-sm-start">
                                                 <div class="col-sm">

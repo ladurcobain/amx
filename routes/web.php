@@ -11,6 +11,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ForwarderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,6 +82,17 @@ Route::group(['middleware' => ['checkLogin']], function () {
     Route::get('branch/edit/{id}', [BranchController::class, 'edit'])->name('branch.edit');
     Route::post('branch/update', [BranchController::class, 'update'])->name('branch.update');
     Route::get('branch/destroy/{id}', [BranchController::class, 'destroy'])->name('branch.destroy');
+
+    // FORWARDER
+    Route::get('forwarder', [ForwarderController::class, 'index'])->name('forwarder.index');
+    Route::post('forwarder/filter', [ForwarderController::class, 'filter'])->name('forwarder.filter');
+    Route::get('forwarder/search', [ForwarderController::class, 'search']);
+    Route::post('forwarder/search', [ForwarderController::class, 'search'])->name('forwarder.search');
+    Route::get('forwarder/create', [ForwarderController::class, 'create'])->name('forwarder.create');
+    Route::post('forwarder/store', [ForwarderController::class, 'store'])->name('forwarder.store');
+    Route::get('forwarder/edit/{id}', [ForwarderController::class, 'edit'])->name('forwarder.edit');
+    Route::post('forwarder/update', [ForwarderController::class, 'update'])->name('forwarder.update');
+    Route::get('forwarder/destroy/{id}', [ForwarderController::class, 'destroy'])->name('forwarder.destroy');
 
 });
 
