@@ -36,7 +36,12 @@ Route::get('ajax/notif', [AjaxController::class, 'notif']);
 
 
 Route::group(['middleware' => ['checkLogin']], function () {
-    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.index');
+    
+    // DASHBOARD
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
+    Route::get('dashboard', [DashboardController::class, 'kasir'])->name('dashboard.kasir');
+    Route::get('dashboard', [DashboardController::class, 'invoice'])->name('dashboard.invoce');
+    Route::get('dashboard', [DashboardController::class, 'cservice'])->name('dashboard.cservice');
 
     // USER
     Route::get('user/search', [UserController::class, 'search']);

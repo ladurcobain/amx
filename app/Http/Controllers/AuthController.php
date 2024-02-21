@@ -12,7 +12,7 @@ class AuthController extends Controller
     public function index()
     {
         if (Session::get('login')) {
-            return redirect()->route('dashboard.index');
+            return view('dashboard.admin');
         }
 
         return view('auth.login');
@@ -23,24 +23,37 @@ class AuthController extends Controller
         $uri = Curl::endpoint();
         $url = $uri . '/' . 'user/login';
 
-        $param = array(
+        $param = [
             'username' => $request->input('username'),
             'password' => $request->input('password'),
-        );
+        ];
 
         $res = Curl::postRequest($url, $param);
-        if ($res->status == "200") {
+        if ($res->status == '200') {
             $request->session()->regenerate();
             $users = $res->data->targetUser;
 
-            Session::put('user_id', $users->id);
-            Session::put('user_account', $users->username);
-            
             $access = $res->data->access_token;
             Session::put('access', $access);
-            Session::put('login', TRUE);
+            Session::put('login', true);
 
-            return redirect()->route('dashboard.index');
+            if ($users->username == "jakarta") {
+                Session::put('user_id', $users->id);
+                Session::put('user_account', $users->username);
+                return view('dashboard.index');
+            } elseif ($users->username == "kasir") {
+                Session::put('user_id', $users->id);
+                Session::put('user_account', $users->username);
+                return view('dashboard.kasir');
+            } elseif ($users->username == "invoice") {
+                Session::put('user_id', $users->id);
+                Session::put('user_account', $users->username);
+                return view('dashboard.invoice');
+            } elseif ($users->username == "cservice") {
+                Session::put('user_id', $users->id);
+                Session::put('user_account', $users->username);
+                return view('dashboard.cservice');
+            }
         } else {
             return redirect('login')->with('alert', $res->message);
         }
@@ -51,10 +64,10 @@ class AuthController extends Controller
         $uri = Curl::endpoint();
         $url = $uri . '/' . 'auth/logout';
 
-        $param = array(
-            'ip'      => Curl::getClientIps(),
-            'user_id' => Session::get('user_id')
-        );
+        $param = [
+            'ip' => Curl::getClientIps(),
+            'user_id' => Session::get('user_id'),
+        ];
 
         $res = Curl::requestPost($url, $param);
         if ($res->status == true) {

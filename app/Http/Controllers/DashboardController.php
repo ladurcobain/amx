@@ -14,7 +14,7 @@ class DashboardController extends Controller
 
     public function index()
     {
-        return view('index');
+        return view('dashboard.admin');
 
         // if(Session::get('login') == TRUE) {
         //     $data['title'] = $this->title;
@@ -54,5 +54,17 @@ class DashboardController extends Controller
         //     //$data['filemanager'] = $resp->filemanager;
         //     return view('dashboard', $data);
         // }
+    }
+
+    public function kasir() {
+        return view('dashboard.kasir');
+    }
+
+    public function invoice() {
+        return view('dashboard.invoice');
+    }
+
+    public function cservice() {
+        return view('dashboard.cservice');
     }
 }
