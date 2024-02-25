@@ -1,4 +1,5 @@
-<?php $__env->startSection('content'); ?>
+@extends('layouts.master')
+@section('content')
 
     <div class="row">
         <div class="col-xl-12">
@@ -8,31 +9,31 @@
                         Daftar <?php echo $title; ?>
                     </h5>
                     <div>
-                        <button type="button" OnClick="link_add('kota');"
+                        <button type="button" OnClick="link_add('customer');"
                             class="btn btn-sm btn-secondary btn-label waves-effect waves-light"><i
                                 class="ri-add-circle-line label-icon align-middle fs-16 me-2"></i> Tambah</button>
                     </div>
                 </div>
                 <div class="card-body">
-                    <?php if($alert = Session::get('alrt')): ?>
+                    @if ($alert = Session::get('alrt'))
                         <div class="alert <?php echo $alert == 'error' ? 'alert-danger' : 'alert-success'; ?> alert-dismissible fade show" management="alert">
                             <strong><?php echo $alert == 'error' ? 'Error' : 'Success'; ?>!</strong>
                             <?php echo Session::get('msgs'); ?>
                             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-hidden="true"
                                 aria-label="Close"></button>
                         </div>
-                    <?php endif; ?>
+                    @endif
                     <div class="live-preview">
                         <div>
-                            <form method="post" action="<?php echo e(route('kota.filter')); ?>">
-                                <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
+                            <form method="post" action="{{ route('customer.filter') }}">
+                                <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                                 <div class="row mb-3">
                                     <div class="col-lg-6"></div>
                                     <div class="col-lg-6">
                                         <div class="input-group">
                                             <input type="text" class="form-control"
-                                                placeholder="Cari Berdasarkan Nama <?php echo e(ucfirst($title)); ?> ..."
-                                                value="<?php echo e($q); ?>" name="keyword" autocomplete="off" />
+                                                placeholder="Cari Berdasarkan Nama {{ ucfirst($title) }} ..."
+                                                value="{{ $q }}" name="keyword" autocomplete="off" />
                                             <button class="btn btn-outline-secondary" type="submit"
                                                 id="button-addon2">Cari</button>
                                         </div>
@@ -45,36 +46,40 @@
                                 style="width:100%">
                                 <thead class="text-muted table-light">
                                     <tr>
-                                        <th>Nama Kota</th>
-                                        <th>Provinsi</th>
+                                        <th>Nama Lengkap</th>
+                                        <th>No. Handphone</th>
+                                        <th>Email</th>
+                                        <th>Alamat</th>
                                         <th>Status</th>
                                         <th width="5%">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if(!empty($results)): ?>
-                                        <?php $__currentLoopData = $results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    @if (!empty($results))
+                                        @foreach ($results as $row)
                                             <tr>
-                                                <td><?php echo e($row->name); ?></td>
-                                                <td><?php echo e($row->Province->name); ?></td>
-                                                <td> <span
-                                                        class="badge text-<?php echo $row->status != true ? 'bg-secondary' : 'bg-primary'; ?>"><?php echo e(App\Helpers\Status::tipeStatus($row->status)); ?>
-
+                                                <td>{{ $row->name }}</td>
+                                                <td>{{ $row->phoneNumber }}</td>
+                                                <td>{{ $row->email }}</td>
+                                                <td>{{ $row->address }}</td>
+                                                <td>
+                                                    <span
+                                                        class="badge text-<?php echo $row->status != true ? 'bg-secondary' : 'bg-primary'; ?>">{{ App\Helpers\Status::tipeStatus($row->status) }}
                                                     </span>
                                                 </td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"
-                                                            onClick="edit_data('kota', '<?php echo e($row->id); ?>');"
+                                                            onClick="edit_data('customer', '{{ $row->id }}');"
                                                             class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                                         <button type="button"
-                                                            onClick="delete_data('kota', '<?php echo e($row->id); ?>');"
+                                                            onClick="delete_data('customer', '{{ $row->id }}');"
                                                             class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
                                                     </div>
                                                 </td>
                                             </tr>
-                                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                                    <?php else: ?>
+                                        @endforeach
+                                    @else
                                         <tr>
                                             <td colspan="2">
                                                 <p class="card-text text-center">
@@ -82,23 +87,22 @@
                                                 </p>
                                             </td>
                                         </tr>
-                                    <?php endif; ?>
+                                    @endif
                                 </tbody>
                                 <tfoot class="text-semibold table-light">
                                     <tr>
-                                        <td colspan="4">
+                                        <td colspan="6">
                                             <div
                                                 class="align-items-center pt-2 justify-content-between row text-center text-sm-start">
                                                 <div class="col-sm">
                                                     <div class="text-muted">
-                                                        Total <b><?php echo e($results->total()); ?></b> Data
+                                                        Total <b>{{ $results->total() }}</b> Data
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-auto mt-3 mt-sm-0">
                                                     <ul
                                                         class="pagination pagination-separated pagination-sm mb-0 justify-content-center">
-                                                        <?php echo e($results->onEachSide(1)->links()); ?>
-
+                                                        {{ $results->onEachSide(1)->links() }}
                                                     </ul>
                                                 </div>
                                             </div>
@@ -113,6 +117,4 @@
         </div>
     </div>
 
-<?php $__env->stopSection(); ?>
-
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/hmamacbook/Documents/Project yoga/amx/resources/views/kota/index.blade.php ENDPATH**/ ?>
+@endsection

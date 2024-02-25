@@ -37,20 +37,20 @@ class AuthController extends Controller
             Session::put('access', $access);
             Session::put('login', true);
 
-            if ($users->username == "jakarta") {
-                Session::put('user_id', $users->id);
+            if ($users->roleId == 2) {
+                Session::put('user_role', $users->roleId);
                 Session::put('user_account', $users->username);
-                return view('dashboard.index');
+                return view('dashboard.admin');
             } elseif ($users->username == "kasir") {
-                Session::put('user_id', $users->id);
+                Session::put('user_role', $users->roleId);
                 Session::put('user_account', $users->username);
                 return view('dashboard.kasir');
             } elseif ($users->username == "invoice") {
-                Session::put('user_id', $users->id);
+                Session::put('user_role', $users->roleId);
                 Session::put('user_account', $users->username);
                 return view('dashboard.invoice');
             } elseif ($users->username == "cservice") {
-                Session::put('user_id', $users->id);
+                Session::put('user_role', $users->roleId);
                 Session::put('user_account', $users->username);
                 return view('dashboard.cservice');
             }

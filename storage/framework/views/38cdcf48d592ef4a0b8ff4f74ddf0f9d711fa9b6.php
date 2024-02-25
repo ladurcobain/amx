@@ -1,6 +1,6 @@
 <!-- ========== App Menu ========== -->
 <div class="app-menu navbar-menu">
-    <!-- LOGO -->
+    <!-- LOGO -->˝
     <div class="navbar-brand-box">
         <!-- Dark Logo-->
         <a href="index" class="logo logo-dark">
@@ -28,75 +28,109 @@
 
     <div id="scrollbar">
         <div class="container-fluid">
-
             <div id="two-column-menu">
             </div>
             <ul class="navbar-nav" id="navbar-nav">
-                <li class="menu-title"><span><?php echo app('translator')->get('translation.menu'); ?></span></li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse" role="button"
-                        aria-expanded="false" aria-controls="sidebarDashboards">
-                        <i class="ri-dashboard-2-line"></i> <span><?php echo app('translator')->get('translation.dashboards'); ?></span>
-                    </a>
-                    <div class="collapse menu-dropdown" id="sidebarDashboards">
-                        <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="dashboard-analytics" class="nav-link"><?php echo app('translator')->get('translation.analytics'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-crm" class="nav-link"><?php echo app('translator')->get('translation.crm'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="index" class="nav-link"><?php echo app('translator')->get('translation.ecommerce'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-crypto" class="nav-link"><?php echo app('translator')->get('translation.crypto'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-projects" class="nav-link"><?php echo app('translator')->get('translation.projects'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-nft" class="nav-link"> <?php echo app('translator')->get('translation.nft'); ?></a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="dashboard-job" class="nav-link"><span><?php echo app('translator')->get('translation.job'); ?></span> <span
-                                        class="badge badge-pill bg-success"><?php echo app('translator')->get('translation.new'); ?></span></a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
+                <li class="menu-title"><span>menu</span></li>
+                <?php if(Session::get('user_role') == 2): ?>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link" href="<?php echo e(route('dashboard.admin')); ?>">
+                            <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('customer*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('customer.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Customer</span>
+                        </a>
+                    </li>
+                <?php elseif(Session::get('user_role') == 3): ?>
+                    <?php if(Session::get('user_account') == 'kasir'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?php echo e(route('dashboard.kasir')); ?>">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                    <?php elseif(Session::get('user_account') == 'invoice'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?php echo e(route('dashboard.invoce')); ?>">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="<?php echo e(route('dashboard.cservice')); ?>">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
 
-                <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Request::is('user*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('user.index')); ?>">
-                        <i class="ri-user-2-line"></i><span>Pengguna</span>
-                        
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Request::is('provinsi*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('provinsi.index')); ?>">
-                        <i class="ri-user-2-line"></i> <span>Provinsi</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Request::is('kota*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('kota.index')); ?>">
-                        <i class="ri-user-2-line"></i> <span>Kota</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Request::is('branch*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('branch.index')); ?>">
-                        <i class="ri-user-2-line"></i> <span>Cabang</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
-                        href="<?php echo e(route('forwarder.index')); ?>">
-                        <i class="ri-user-2-line"></i> <span>Forwarder</span>
-                    </a>
-                </li>
+                <?php if(Session::get('user_role') == 2): ?>
+                    <li class="menu-title"><span>Ekspedisi</span></li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('provinsi*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('provinsi.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Provinsi</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('kota*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('kota.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Kota</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('branch*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('branch.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Cabang</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('forwarder.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Forwarder</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('layanan*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('layanan.index')); ?>">
+                            <i class="ri-user-2-line"></i> <span>Layanan</span>
+                        </a>
+                    </li>
+                    <li class="menu-title"><span>Pengaturan</span></li>
+
+                    <li class="nav-item">
+                        <a class="nav-link menu-link <?php echo e(Request::is('user*') ? 'active' : ''); ?>"
+                            href="<?php echo e(route('user.index')); ?>">
+                            <i class="ri-user-2-line"></i><span>Pengguna</span>
+                        </a>
+                    </li>
+                <?php else: ?>
+                    <?php if(Session::get('user_account') == 'kasir'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
+                                href="<?php echo e(route('forwarder.index')); ?>">
+                                <i class="ri-user-2-line"></i> <span>kasir</span>
+                            </a>
+                        </li>
+                    <?php elseif(Session::get('user_account') == 'invoice'): ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
+                                href="<?php echo e(route('forwarder.index')); ?>">
+                                <i class="ri-user-2-line"></i> <span>invoice</span>
+                            </a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link <?php echo e(Request::is('forwarder*') ? 'active' : ''); ?>"
+                                href="<?php echo e(route('forwarder.index')); ?>">
+                                <i class="ri-user-2-line"></i> <span>cservie</span>
+                            </a>
+                        </li>
+                    <?php endif; ?>
+                <?php endif; ?>
+
             </ul>
         </div>
         <!-- Sidebar -->

@@ -8,7 +8,7 @@
                         Daftar <?php echo $title; ?>
                     </h5>
                     <div>
-                        <button type="button" OnClick="link_add('kota');"
+                        <button type="button" OnClick="link_add('layanan');"
                             class="btn btn-sm btn-secondary btn-label waves-effect waves-light"><i
                                 class="ri-add-circle-line label-icon align-middle fs-16 me-2"></i> Tambah</button>
                     </div>
@@ -24,7 +24,7 @@
                     <?php endif; ?>
                     <div class="live-preview">
                         <div>
-                            <form method="post" action="<?php echo e(route('kota.filter')); ?>">
+                            <form method="post" action="<?php echo e(route('layanan.filter')); ?>">
                                 <input type="hidden" name="_token" value="<?php echo e(csrf_token()); ?>" />
                                 <div class="row mb-3">
                                     <div class="col-lg-6"></div>
@@ -45,9 +45,7 @@
                                 style="width:100%">
                                 <thead class="text-muted table-light">
                                     <tr>
-                                        <th>Nama Kota</th>
-                                        <th>Provinsi</th>
-                                        <th>Status</th>
+                                        <th>Layanan</th>
                                         <th width="5%">Action</th>
                                     </tr>
                                 </thead>
@@ -55,20 +53,14 @@
                                     <?php if(!empty($results)): ?>
                                         <?php $__currentLoopData = $results; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $row): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                             <tr>
-                                                <td><?php echo e($row->name); ?></td>
-                                                <td><?php echo e($row->Province->name); ?></td>
-                                                <td> <span
-                                                        class="badge text-<?php echo $row->status != true ? 'bg-secondary' : 'bg-primary'; ?>"><?php echo e(App\Helpers\Status::tipeStatus($row->status)); ?>
-
-                                                    </span>
-                                                </td>
+                                                <td><?php echo e($row->description); ?></td>
                                                 <td align="center">
                                                     <div class="hstack gap-1 mt-4 mt-sm-0">
                                                         <button type="button"
-                                                            onClick="edit_data('kota', '<?php echo e($row->id); ?>');"
+                                                            onClick="edit_data('layanan', '<?php echo e($row->id); ?>');"
                                                             class="btn btn-outline-warning btn-sm waves-effect waves-light">Ubah</button></button>
                                                         <button type="button"
-                                                            onClick="delete_data('kota', '<?php echo e($row->id); ?>');"
+                                                            onClick="delete_data('layanan', '<?php echo e($row->id); ?>');"
                                                             class="btn btn-outline-danger btn-sm waves-effect waves-light">Hapus</button>
                                                     </div>
                                                 </td>
@@ -115,4 +107,4 @@
 
 <?php $__env->stopSection(); ?>
 
-<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/hmamacbook/Documents/Project yoga/amx/resources/views/kota/index.blade.php ENDPATH**/ ?>
+<?php echo $__env->make('layouts.master', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH /Users/hmamacbook/Documents/Project yoga/amx/resources/views/layanan/index.blade.php ENDPATH**/ ?>

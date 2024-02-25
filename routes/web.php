@@ -12,6 +12,8 @@ use App\Http\Controllers\ProvinsiController;
 use App\Http\Controllers\KotaController;
 use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ForwarderController;
+use App\Http\Controllers\ServiceController;
+use App\Http\Controllers\CustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +41,9 @@ Route::group(['middleware' => ['checkLogin']], function () {
     
     // DASHBOARD
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard.admin');
-    Route::get('dashboard', [DashboardController::class, 'kasir'])->name('dashboard.kasir');
-    Route::get('dashboard', [DashboardController::class, 'invoice'])->name('dashboard.invoce');
-    Route::get('dashboard', [DashboardController::class, 'cservice'])->name('dashboard.cservice');
+    Route::get('dashboardkasir', [DashboardController::class, 'kasir'])->name('dashboard.kasir');
+    Route::get('dashboardinvoice', [DashboardController::class, 'invoice'])->name('dashboard.invoce');
+    Route::get('dashboardcservice', [DashboardController::class, 'cservice'])->name('dashboard.cservice');
 
     // USER
     Route::get('user/search', [UserController::class, 'search']);
@@ -98,6 +100,28 @@ Route::group(['middleware' => ['checkLogin']], function () {
     Route::get('forwarder/edit/{id}', [ForwarderController::class, 'edit'])->name('forwarder.edit');
     Route::post('forwarder/update', [ForwarderController::class, 'update'])->name('forwarder.update');
     Route::get('forwarder/destroy/{id}', [ForwarderController::class, 'destroy'])->name('forwarder.destroy');
+
+    // LAYANAN
+    Route::get('layanan', [ServiceController::class, 'index'])->name('layanan.index');
+    Route::post('layanan/filter', [ServiceController::class, 'filter'])->name('layanan.filter');
+    Route::get('layanan/search', [ServiceController::class, 'search']);
+    Route::post('layanan/search', [ServiceController::class, 'search'])->name('layanan.search');
+    Route::get('layanan/create', [ServiceController::class, 'create'])->name('layanan.create');
+    Route::post('layanan/store', [ServiceController::class, 'store'])->name('layanan.store');
+    Route::get('layanan/edit/{id}', [ServiceController::class, 'edit'])->name('layanan.edit');
+    Route::post('layanan/update', [ServiceController::class, 'update'])->name('layanan.update');
+    Route::get('layanan/destroy/{id}', [ServiceController::class, 'destroy'])->name('layanan.destroy');
+
+     // Customer
+     Route::get('customer', [CustomerController::class, 'index'])->name('customer.index');
+     Route::post('customer/filter', [CustomerController::class, 'filter'])->name('customer.filter');
+     Route::get('customer/search', [CustomerController::class, 'search']);
+     Route::post('customer/search', [CustomerController::class, 'search'])->name('customer.search');
+     Route::get('customer/create', [CustomerController::class, 'create'])->name('customer.create');
+     Route::post('customer/store', [CustomerController::class, 'store'])->name('customer.store');
+     Route::get('customer/edit/{id}', [CustomerController::class, 'edit'])->name('customer.edit');
+     Route::post('customer/update', [CustomerController::class, 'update'])->name('customer.update');
+     Route::get('customer/destroy/{id}', [CustomerController::class, 'destroy'])->name('customer.destroy');
 
 });
 
