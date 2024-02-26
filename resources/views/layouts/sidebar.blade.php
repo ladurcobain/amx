@@ -44,29 +44,6 @@
                             <i class="ri-user-2-line"></i> <span>Customer</span>
                         </a>
                     </li>
-                @elseif(Session::get('user_role') == 3)
-                    @if (Session::get('user_account') == 'kasir')
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('dashboard.kasir') }}">
-                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                    @elseif(Session::get('user_account') == 'invoice')
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('dashboard.invoce') }}">
-                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link menu-link" href="{{ route('dashboard.cservice') }}">
-                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
-                            </a>
-                        </li>
-                    @endif
-                @endif
-
-                @if (Session::get('user_role') == 2)
                     <li class="menu-title"><span>Ekspedisi</span></li>
                     <li class="nav-item">
                         <a class="nav-link menu-link {{ Request::is('provinsi*') ? 'active' : '' }}"
@@ -106,31 +83,101 @@
                             <i class="ri-user-2-line"></i><span>Pengguna</span>
                         </a>
                     </li>
-                @else
+                @elseif(Session::get('user_role') == 3)
                     @if (Session::get('user_account') == 'kasir')
                         <li class="nav-item">
-                            <a class="nav-link menu-link {{ Request::is('forwarder*') ? 'active' : '' }}"
-                                href="{{ route('forwarder.index') }}">
-                                <i class="ri-user-2-line"></i> <span>kasir</span>
+                            <a class="nav-link menu-link" href="{{ route('dashboard.kasir') }}">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
                             </a>
                         </li>
-                    @elseif (Session::get('user_account') == 'invoice')
+                    @elseif(Session::get('user_account') == 'invoice')
                         <li class="nav-item">
-                            <a class="nav-link menu-link {{ Request::is('forwarder*') ? 'active' : '' }}"
-                                href="{{ route('forwarder.index') }}">
-                                <i class="ri-user-2-line"></i> <span>invoice</span>
+                            <a class="nav-link menu-link" href="{{ route('dashboard.invoce') }}">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
                             </a>
                         </li>
                     @else
                         <li class="nav-item">
-                            <a class="nav-link menu-link {{ Request::is('forwarder*') ? 'active' : '' }}"
-                                href="{{ route('forwarder.index') }}">
-                                <i class="ri-user-2-line"></i> <span>cservie</span>
+                            <a class="nav-link menu-link" href="{{ route('dashboard.cservice') }}">
+                                <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
                             </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('suratjalan*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Surat
+                                    Jalan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('tagihanvendor*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Tagihan
+                                    Vendor</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('pengeluaran*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i>
+                                <span>Pengeluaran</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('lacakstt*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Lacak
+                                    STT</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('hapuslacak*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Hapus
+                                    Lacak</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('tandaterima*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Tanda
+                                    Terima</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('statuspenerima*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i>
+                                <span>Status
+                                    Penerima</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="ri-dashboard-2-line"></i> <span>Laporan</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <ul class="nav nav-sm flex-column">
+                                    <li>
+                                        <h6 class="dropdown-header text-light">STT</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('dalampengiriman*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Dalam
+                                                Pengiriman</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('belumditerima*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum
+                                                diterima</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudahditerima*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah
+                                                diterima</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
                         </li>
                     @endif
                 @endif
-
             </ul>
         </div>
         <!-- Sidebar -->
