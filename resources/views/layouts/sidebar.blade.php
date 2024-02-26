@@ -96,6 +96,155 @@
                                 <i class="ri-dashboard-2-line"></i> <span>Dashboard</span>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('biayakirm*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Biaya Kirim</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('viatransfer*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Via Transfer</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('viatunai*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Via Tunai</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('tagihaninvoice*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Tagihan Invoice</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('pemasukan*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Pemasukan</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('kirimbalik*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Kirim Balik</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('rekapinvoice*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Rekap Invoice</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link {{ Request::is('refereshbiaya*') ? 'active' : '' }}"
+                                href=""> <i class="ri-user-2-line"></i> <span>Refresh Biaya Kiriman</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link menu-link" href="#sidebarDashboards" data-bs-toggle="collapse"
+                                role="button" aria-expanded="false" aria-controls="sidebarDashboards">
+                                <i class="ri-dashboard-2-line"></i> <span>Laporan</span>
+                            </a>
+                            <div class="collapse menu-dropdown" id="sidebarDashboards">
+                                <ul class="nav nav-sm flex-column">
+                                    <li>
+                                        <h6 class="dropdown-header text-light">STT</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('belumeditbiaya*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum Edit Biaya</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudaheditbiaya*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah Edit Biaya</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('terbiteditbiaya*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Terbit Edit Biaya</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class="dropdown-header text-light">Invoice</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('belumlunas*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudahlunas*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('tampilsemua*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Tampil Semua</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class="dropdown-header text-light">Via Transfer</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('belumlunastransfer*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudahlunastransfer*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('tampilsemuatransfer*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Tampil Semua</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class="dropdown-header text-light">Via Tunai</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('belumlunastunai*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudahlunastunai*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah Lunas</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('tampilsemuatunai*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Tampil Semua</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class="dropdown-header text-light">POD Customer</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('beluminputtanggal*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Belum Input Tanggal</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('sudahinputtanggal*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Sudah Input Tanggal</span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <h6 class="dropdown-header text-light">Layanan</h6>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('pemasukan*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Pemasukan</span>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a class="nav-link menu-link {{ Request::is('penjualanperbulan*') ? 'active' : '' }}"
+                                            href=""> <i class="ri-user-2-line"></i> <span>Penjualan Perbulan</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                        
                     @else
                         <li class="nav-item">
                             <a class="nav-link menu-link" href="{{ route('dashboard.cservice') }}">
